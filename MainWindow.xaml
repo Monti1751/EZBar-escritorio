@@ -1,0 +1,180 @@
+﻿<Window x:Class="EZBarEscritorio.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="EZBar Escritorio - Panel de Administración"
+    Height="700" Width="1100"
+    Background="{StaticResource BackgroundCreamBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Cabecera Premium -->
+        <Border Grid.Row="0" Background="{StaticResource DarkBrownBrush}" Padding="20,15"
+            CornerRadius="0,0,20,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="EZBAR" FontSize="28" FontWeight="ExtraBold"
+                        Foreground="{StaticResource PrimaryGreenBrush}" VerticalAlignment="Center"
+                        Margin="0,0,20,0" />
+                    <TextBlock Text="ADMINISTRACIÓN ESTATAL" Foreground="White"
+                        VerticalAlignment="Center" Opacity="0.8" FontSize="14" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="SINCRONIZAR API" Command="{Binding CargarDatosCommand}"
+                        Background="{StaticResource PrimaryGreenBrush}" Padding="20,8" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Contenido Principal -->
+        <TabControl Grid.Row="1" Margin="20" Background="Transparent" BorderThickness="0">
+            <!-- TAB PAGOS -->
+            <TabItem Header="PAGOS REALIZADOS">
+                <Border Background="White" CornerRadius="0,20,20,20" Padding="15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Border Background="{StaticResource WhiteSmokeBrush}" CornerRadius="12"
+                                Padding="10,2" Margin="0,0,10,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="🔍" VerticalAlignment="Center"
+                                        Margin="5,0,10,0" Opacity="0.5" />
+                                    <TextBox Width="250" BorderThickness="0"
+                                        Background="Transparent" VerticalContentAlignment="Center"
+                                        Text="{Binding FiltroPagos, UpdateSourceTrigger=PropertyChanged}"
+                                        Tag="Buscar por ID o Método..." />
+                                </StackPanel>
+                            </Border>
+                            <Button Content="REPORTE EXCEL" Command="{Binding ExportarPagosCommand}"
+                                Background="{StaticResource DarkBrownBrush}" />
+                        </StackPanel>
+
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding PagosFiltrados}"
+                            AutoGenerateColumns="False" CanUserSortColumns="True" IsReadOnly="True"
+                            BorderThickness="1" BorderBrush="#DDD" RowHeight="40"
+                            GridLinesVisibility="Horizontal">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" />
+                                <DataGridTextColumn Header="FECHA"
+                                    Binding="{Binding FechaPago, StringFormat=\{0:dd/MM/yyyy HH:mm\}}"
+                                    Width="150" />
+                                <DataGridTextColumn Header="METODO" Binding="{Binding MetodoPago}"
+                                    Width="*" />
+                                <DataGridTextColumn Header="ESTADO" Binding="{Binding Estado}"
+                                    Width="100" />
+                                <DataGridTextColumn Header="MONTO"
+                                    Binding="{Binding Monto, StringFormat=\{0:C\}}" Width="100" />
+                                <DataGridTemplateColumn Header="ACCIONES" Width="150">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="COMPLETAR" FontSize="10" Padding="5,2"
+                                                Margin="2"
+                                                Command="{Binding DataContext.CambiarEstadoPagoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                CommandParameter="{Binding}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <!-- TAB PEDIDOS -->
+            <TabItem Header="PEDIDOS ACTIVOS">
+                <Border Background="White" CornerRadius="0,20,20,20" Padding="15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Border Background="{StaticResource WhiteSmokeBrush}" CornerRadius="12"
+                                Padding="10,2" Margin="0,0,10,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="🔍" VerticalAlignment="Center"
+                                        Margin="5,0,10,0" Opacity="0.5" />
+                                    <TextBox Width="250" BorderThickness="0"
+                                        Background="Transparent" VerticalContentAlignment="Center"
+                                        Text="{Binding FiltroPedidos, UpdateSourceTrigger=PropertyChanged}"
+                                        Tag="Buscar por Mesa o ID..." />
+                                </StackPanel>
+                            </Border>
+                            <Button Content="REPORTE EXCEL"
+                                Command="{Binding ExportarPedidosCommand}"
+                                Background="{StaticResource DarkBrownBrush}" />
+                        </StackPanel>
+
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding PedidosFiltrados}"
+                            AutoGenerateColumns="False" CanUserSortColumns="True" IsReadOnly="True"
+                            BorderThickness="1" BorderBrush="#DDD" RowHeight="40"
+                            GridLinesVisibility="Horizontal">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50" />
+                                <DataGridTextColumn Header="FECHA"
+                                    Binding="{Binding FechaPedido, StringFormat=\{0:dd/MM/yyyy HH:mm\}}"
+                                    Width="150" />
+                                <DataGridTextColumn Header="MESA" Binding="{Binding MesaId}"
+                                    Width="80" />
+                                <DataGridTextColumn Header="TOTAL"
+                                    Binding="{Binding Total, StringFormat=\{0:C\}}" Width="100" />
+                                <DataGridTextColumn Header="ESTADO" Binding="{Binding Estado}"
+                                    Width="*" />
+                                <DataGridTemplateColumn Header="ACCIONES" Width="180">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="PAGAR" FontSize="10"
+                                                    Padding="8,2" Margin="2"
+                                                    Background="{StaticResource DarkBrownBrush}"
+                                                    Command="{Binding DataContext.PagarPedidoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}" />
+                                                <Button Content="MARCAR LISTO" FontSize="10"
+                                                    Padding="5,2" Margin="2"
+                                                    Command="{Binding DataContext.CambiarEstadoPedidoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                    CommandParameter="{Binding}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </TabItem>
+        </TabControl>
+
+        <!-- Barra de Estado Inferior -->
+        <Border Grid.Row="2" Background="#EEE" Padding="10,5">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Estado:" FontWeight="Bold" Margin="0,0,5,0" />
+                    <TextBlock Text="{Binding StatusMessage}" Foreground="DarkGreen"
+                        Visibility="{Binding IsLoading, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                    <TextBlock Text="Sincronizando..."
+                        Foreground="{StaticResource PrimaryGreenBrush}"
+                        Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+                <ProgressBar IsIndeterminate="True" Width="100" Height="4"
+                    VerticalAlignment="Bottom"
+                    Foreground="{StaticResource PrimaryGreenBrush}" Background="Transparent"
+                    BorderThickness="0"
+                    Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

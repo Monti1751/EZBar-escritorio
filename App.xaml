@@ -1,0 +1,68 @@
+﻿<Application x:Class="EZBarEscritorio.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:EZBarEscritorio"
+    xmlns:converters="clr-namespace:EZBarEscritorio.Infrastructure.Converters">
+    <Application.Resources>
+        <!-- Converters -->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+
+        <!-- Design System: Frontend Colors -->
+        <SolidColorBrush x:Key="PrimaryGreenBrush" Color="#7BA238" />
+        <SolidColorBrush x:Key="BackgroundCreamBrush" Color="#ECF0D5" />
+        <SolidColorBrush x:Key="DarkBrownBrush" Color="#4A4025" />
+        <SolidColorBrush x:Key="LightGreenBrush" Color="#8EB156" />
+        <SolidColorBrush x:Key="WhiteSmokeBrush" Color="#F5F5F5" />
+
+        <!-- Rounded Styles (12px radius) -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryGreenBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="15,8" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            CornerRadius="12"
+                            BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource LightGreenBrush}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="Border"
+                            CornerRadius="12,12,0,0"
+                            Background="Transparent"
+                            Padding="20,10">
+                            <ContentPresenter ContentSource="Header" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background"
+                                    Value="{StaticResource BackgroundCreamBrush}" />
+                                <Setter Property="Foreground"
+                                    Value="{StaticResource DarkBrownBrush}" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>
