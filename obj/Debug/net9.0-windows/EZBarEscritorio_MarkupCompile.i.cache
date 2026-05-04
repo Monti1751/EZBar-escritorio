@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\GitHub\EZBar_Backend\EZBarEscritorio\EZBarEscritorio\obj\Debug\net9.0-windows\
+D:\GitHub\EZBar-escritorio\obj\Debug\net9.0-windows\
 EZBarEscritorio
 none
 false
 TRACE;DEBUG;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-D:\GitHub\EZBar_Backend\EZBarEscritorio\EZBarEscritorio\App.xaml
-11407045341
+D:\GitHub\EZBar-escritorio\App.xaml
+22005680072
 
-15341501598
+161016881592
 226-1517774788
-MainWindow.xaml;
+MainWindow.xaml;PagoWindow.xaml;
 
 False
 

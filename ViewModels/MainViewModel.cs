@@ -16,6 +16,7 @@ namespace EZBarEscritorio.ViewModels
         private readonly IPagoRepository _pagoRepository;
         private readonly IPedidoRepository _pedidoRepository;
         private readonly ExcelExporter _excelExporter;
+        private System.Windows.Threading.DispatcherTimer _timer;
         
         private List<Pago> _pagosCache;
         private List<Pedido> _pedidosCache;
@@ -52,6 +53,27 @@ namespace EZBarEscritorio.ViewModels
             
             _pagosCache = new List<Pago>();
             _pedidosCache = new List<Pedido>();
+
+            // Configurar sincronización en tiempo real (cada 10 segundos)
+            _timer = new System.Windows.Threading.DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(10);
+            _timer.Tick += async (s, e) => {
+                // Solo recargamos en segundo plano si no estamos ya cargando manualmente
+                if (!IsLoading) {
+                    try {
+                        var pagos = await _pagoRepository.ObtenerTodosAsync();
+                        _pagosCache = pagos.ToList();
+                        var pedidos = await _pedidoRepository.ObtenerTodosAsync();
+                        _pedidosCache = pedidos.ToList();
+                        
+                        System.Windows.Application.Current.Dispatcher.Invoke(() => {
+                            AplicarFiltrosPagos();
+                            AplicarFiltrosPedidos();
+                        });
+                    } catch { } // Ignorar errores silenciosos del timer
+                }
+            };
+            _timer.Start();
         }
 
 
@@ -140,19 +162,9 @@ namespace EZBarEscritorio.ViewModels
             SetLoading(true);
             try 
             {
-                ActualizarStatus($"Completando pedido {pago.PedidoId}...");
-                // Completar el pago en realidad significa marcar el pedido como pagado en esta app
-                bool exito = await _pedidoRepository.ActualizarEstadoPedidoAsync(pago.PedidoId, "pagado");
-                
-                if (exito) 
-                {
-                    ActualizarStatus($"Pedido {pago.PedidoId} completado y archivado.");
-                    await CargarDatosAsync();
-                }
-                else 
-                {
-                    ActualizarStatus($"Error al completar pedido {pago.PedidoId}");
-                }
+                ActualizarStatus($"Pago {pago.Id} verificado. El pedido {pago.PedidoId} ya está completado.");
+                System.Windows.MessageBox.Show($"El pago {pago.Id} del pedido {pago.PedidoId} ya se encuentra completado y registrado correctamente.", "Pago Completado", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                await CargarDatosAsync();
             }
             finally 
             {
@@ -183,42 +195,46 @@ namespace EZBarEscritorio.ViewModels
         {
             if (pedido == null) return;
 
-            var r = System.Windows.MessageBox.Show($"¿Confirmar pago de {pedido.Total:C} para la mesa {pedido.MesaId}?", 
-                "Confirmar Pago", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question);
+            // Abrir la nueva ventana de pago
+            var pagoWindow = new PagoWindow(pedido.Total);
+            bool? result = null;
             
-            if (r != System.Windows.MessageBoxResult.Yes) return;
+            // Necesitamos asegurarnos de que la ventana se abre en el hilo de UI
+            System.Windows.Application.Current.Dispatcher.Invoke(() => {
+                result = pagoWindow.ShowDialog();
+            });
+            
+            if (result != true) return;
+
+            string metodoPago = pagoWindow.MetodoPagoSeleccionado;
+
+            // Optimistic UI Update: Ocultar inmediatamente de la tabla para dar sensación de tiempo real
+            System.Windows.Application.Current.Dispatcher.Invoke(() => {
+                PedidosFiltrados.Remove(pedido);
+            });
 
             SetLoading(true);
             try 
             {
-                ActualizarStatus("Registrando pago...");
-                // 1. Crear el registro de pago (por defecto en efectivo para simplificar)
-                bool pagoOk = await _pagoRepository.CrearPagoAsync(pedido.Id, pedido.Total, "efectivo");
+                ActualizarStatus($"Registrando pago con {metodoPago}...");
+                // 1. Crear el registro de pago con el método seleccionado
+                bool pagoOk = await _pagoRepository.CrearPagoAsync(pedido.Id, pedido.Total, metodoPago);
                 
                 if (pagoOk)
                 {
-                    ActualizarStatus("Actualizando estado del pedido...");
-                    // 2. Marcar el pedido como pagado
-                    bool pedidoOk = await _pedidoRepository.ActualizarEstadoPedidoAsync(pedido.Id, "pagado");
-                    
-                    if (pedidoOk)
-                    {
-                        ActualizarStatus($"Pedido {pedido.Id} pagado correctamente.");
-                        await CargarDatosAsync();
-                    }
-                    else
-                    {
-                        ActualizarStatus("Pago registrado pero falló actualizar el pedido.");
-                    }
+                    ActualizarStatus($"Pedido {pedido.Id} pagado correctamente.");
+                    await CargarDatosAsync();
                 }
                 else 
                 {
                     ActualizarStatus("Error al registrar el pago en la API.");
+                    await CargarDatosAsync(); // Revertir estado si falla
                 }
             }
             catch (Exception ex)
             {
                 ActualizarStatus($"Error en el proceso de pago: {ex.Message}");
+                await CargarDatosAsync(); // Revertir estado si falla
             }
             finally 
             {
@@ -229,13 +245,49 @@ namespace EZBarEscritorio.ViewModels
         [RelayCommand]
         public void ExportarPagos()
         {
-            _excelExporter.ExportarPagos(PagosFiltrados, "Pagos_Export.xlsx");
+            var dialog = new Microsoft.Win32.SaveFileDialog
+            {
+                FileName = "Pagos_Export.xlsx",
+                DefaultExt = ".xlsx",
+                Filter = "Excel documents (.xlsx)|*.xlsx"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                try
+                {
+                    _excelExporter.ExportarPagos(PagosFiltrados, dialog.FileName);
+                    System.Windows.MessageBox.Show("Archivo de Pagos exportado correctamente.", "Éxito", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show($"Error al exportar: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
+            }
         }
 
         [RelayCommand]
         public void ExportarPedidos()
         {
-            _excelExporter.ExportarPedidos(PedidosFiltrados, "Pedidos_Export.xlsx");
+            var dialog = new Microsoft.Win32.SaveFileDialog
+            {
+                FileName = "Pedidos_Export.xlsx",
+                DefaultExt = ".xlsx",
+                Filter = "Excel documents (.xlsx)|*.xlsx"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                try
+                {
+                    _excelExporter.ExportarPedidos(PedidosFiltrados, dialog.FileName);
+                    System.Windows.MessageBox.Show("Archivo de Pedidos exportado correctamente.", "Éxito", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show($"Error al exportar: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                }
+            }
         }
     }
 }
