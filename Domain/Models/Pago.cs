@@ -9,6 +9,8 @@ namespace EZBarEscritorio.Domain.Models
         [property: JsonPropertyName("monto")] decimal Monto,
         [property: JsonPropertyName("metodo_pago")] string MetodoPago,
         [property: JsonPropertyName("fecha_hora_pago")] DateTime FechaPago,
+        [property: JsonPropertyName("monto_entregado")] decimal? MontoEntregado,
+        [property: JsonPropertyName("cambio")] decimal? Cambio,
         [property: JsonPropertyName("pedido")] PedidoDto Pedido
     );
 
@@ -21,5 +23,7 @@ namespace EZBarEscritorio.Domain.Models
         public string MetodoPago { get; set; }
         public string Estado { get; set; } // Enlazado al estado del pedido si no existe campo estado en pagos
         public DateTime FechaPago { get; set; }
+        public decimal MontoEntregado { get; set; }
+        public decimal Cambio { get; set; }
     }
 }

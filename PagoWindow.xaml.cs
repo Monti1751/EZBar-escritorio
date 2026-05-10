@@ -6,6 +6,9 @@ namespace EZBarEscritorio
     public partial class PagoWindow : Window
     {
         public string MetodoPagoSeleccionado { get; private set; }
+        public decimal MontoEntregado { get; private set; }
+        public decimal Cambio { get; private set; }
+        
         private decimal _totalPedido;
 
         public PagoWindow(decimal totalPedido)
@@ -73,6 +76,22 @@ namespace EZBarEscritorio
         private void btnConfirmar_Click(object sender, RoutedEventArgs e)
         {
             MetodoPagoSeleccionado = ((ComboBoxItem)cmbMetodoPago.SelectedItem).Content.ToString().ToLower();
+            
+            if (panelEfectivo.Visibility == Visibility.Visible)
+            {
+                string input = txtMontoRecibido.Text.Replace(".", ",");
+                if (decimal.TryParse(input, out decimal recibido))
+                {
+                    MontoEntregado = recibido;
+                    Cambio = recibido - _totalPedido;
+                }
+            }
+            else
+            {
+                MontoEntregado = _totalPedido;
+                Cambio = 0;
+            }
+
             DialogResult = true;
             Close();
         }

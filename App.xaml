@@ -1,4 +1,4 @@
-﻿<Application x:Class="EZBarEscritorio.App"
+<Application x:Class="EZBarEscritorio.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:EZBarEscritorio"
@@ -27,7 +27,8 @@
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
                             CornerRadius="12"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center"
                                 VerticalAlignment="Center" />
                         </Border>

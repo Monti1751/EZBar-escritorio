@@ -31,6 +31,8 @@ namespace EZBarEscritorio.Repositories
             {
                 Id = dto.Id,
                 MesaId = dto.Mesa?.MesaId ?? 0,
+                NombreMesa = dto.Mesa?.Nombre ?? $"Mesa {dto.Mesa?.Numero}",
+                Zona = dto.Mesa?.Ubicacion ?? "N/A",
                 Total = dto.Total,
                 Estado = dto.Estado,
                 FechaPedido = dto.FechaPedido

@@ -207,6 +207,8 @@ namespace EZBarEscritorio.ViewModels
             if (result != true) return;
 
             string metodoPago = pagoWindow.MetodoPagoSeleccionado;
+            decimal montoEntregado = pagoWindow.MontoEntregado;
+            decimal cambio = pagoWindow.Cambio;
 
             // Optimistic UI Update: Ocultar inmediatamente de la tabla para dar sensación de tiempo real
             System.Windows.Application.Current.Dispatcher.Invoke(() => {
@@ -218,7 +220,7 @@ namespace EZBarEscritorio.ViewModels
             {
                 ActualizarStatus($"Registrando pago con {metodoPago}...");
                 // 1. Crear el registro de pago con el método seleccionado
-                bool pagoOk = await _pagoRepository.CrearPagoAsync(pedido.Id, pedido.Total, metodoPago);
+                bool pagoOk = await _pagoRepository.CrearPagoAsync(pedido.Id, pedido.Total, metodoPago, montoEntregado, cambio);
                 
                 if (pagoOk)
                 {

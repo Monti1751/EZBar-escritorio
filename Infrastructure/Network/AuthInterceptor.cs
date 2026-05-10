@@ -1,5 +1,7 @@
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -7,18 +9,22 @@ namespace EZBarEscritorio.Infrastructure.Network
 {
     public class AuthInterceptor : DelegatingHandler
     {
-        private readonly string _jwtToken;
+        private readonly string _username;
+        private readonly string _password;
 
-        public AuthInterceptor(string token)
+        public AuthInterceptor(string username, string password)
         {
-            _jwtToken = token;
+            _username = username;
+            _password = password;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrEmpty(_jwtToken))
+            if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_password))
             {
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", _jwtToken);
+                var authString = $"{_username}:{_password}";
+                var base64Auth = Convert.ToBase64String(Encoding.UTF8.GetBytes(authString));
+                request.Headers.Authorization = new AuthenticationHeaderValue("Basic", base64Auth);
             }
             // Necesario para saltar la página de advertencia de ngrok
             request.Headers.Add("ngrok-skip-browser-warning", "true");
