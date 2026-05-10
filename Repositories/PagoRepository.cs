@@ -12,7 +12,7 @@ namespace EZBarEscritorio.Repositories
         Task<IEnumerable<Pago>> ObtenerTodosAsync();
         IEnumerable<Pago> FiltrarPagos(IEnumerable<Pago> pagos, string query, DateTime? fecha);
         Task<bool> ActualizarEstadoPagoAsync(int id, string nuevoEstado);
-        Task<bool> CrearPagoAsync(int pedidoId, decimal monto, string metodoPago);
+        Task<bool> CrearPagoAsync(int pedidoId, decimal monto, string metodoPago, decimal montoEntregado, decimal cambio);
     }
 
     public class PagoRepository : IPagoRepository
@@ -35,7 +35,9 @@ namespace EZBarEscritorio.Repositories
                 Monto = dto.Monto,
                 MetodoPago = dto.MetodoPago,
                 Estado = dto.Pedido?.Estado ?? "Pagado",
-                FechaPago = dto.FechaPago
+                FechaPago = dto.FechaPago,
+                MontoEntregado = dto.MontoEntregado ?? dto.Monto,
+                Cambio = dto.Cambio ?? 0
             });
         }
 
@@ -64,7 +66,7 @@ namespace EZBarEscritorio.Repositories
             return await _apiService.PutAsync($"/api/pagos/{id}", payload);
         }
 
-        public async Task<bool> CrearPagoAsync(int pedidoId, decimal monto, string metodoPago)
+        public async Task<bool> CrearPagoAsync(int pedidoId, decimal monto, string metodoPago, decimal montoEntregado, decimal cambio)
         {
             // Nota: Para simplificar, usamos empleado_id = 1 (Juan o el que exista)
             // En un sistema real esto vendría del usuario logueado.
@@ -73,7 +75,9 @@ namespace EZBarEscritorio.Repositories
                 pedido = new { pedido_id = pedidoId },
                 empleado = new { empleado_id = 1 }, // Fallback al admin/caja
                 metodo_pago = metodoPago.ToLower(),
-                monto = monto
+                monto = monto,
+                monto_entregado = montoEntregado,
+                cambio = cambio
             };
             
             return await _apiService.PostAsync("/api/pagos", payload);

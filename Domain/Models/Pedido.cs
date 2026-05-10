@@ -6,7 +6,9 @@ namespace EZBarEscritorio.Domain.Models
     // DTOs matching Java Backend
     public record MesaDto(
         [property: JsonPropertyName("mesa_id")] int MesaId,
-        [property: JsonPropertyName("numero_mesa")] int? Numero
+        [property: JsonPropertyName("numero_mesa")] int? Numero,
+        [property: JsonPropertyName("ubicacion")] string Ubicacion,
+        [property: JsonPropertyName("nombre")] string Nombre
     );
 
     public record PedidoDto(
@@ -22,6 +24,8 @@ namespace EZBarEscritorio.Domain.Models
     {
         public int Id { get; set; }
         public int MesaId { get; set; }
+        public string NombreMesa { get; set; }
+        public string Zona { get; set; }
         public decimal Total { get; set; }
         public string Estado { get; set; }
         public DateTime FechaPedido { get; set; }

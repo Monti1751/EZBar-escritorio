@@ -108,7 +108,7 @@ namespace EZBarEscritorio {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/EZBarEscritorio;V1.0.0.0;component/pagowindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/EZBarEscritorio;component/pagowindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\PagoWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

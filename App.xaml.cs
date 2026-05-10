@@ -1,5 +1,8 @@
-﻿using System;
+using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
+using System.Windows.Markup;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using EZBarEscritorio.Infrastructure.Network;
@@ -16,6 +19,14 @@ namespace EZBarEscritorio
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            // Configurar cultura a español (España) para usar € en lugar de $
+            var culture = new CultureInfo("es-ES");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+                typeof(FrameworkElement),
+                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(culture.IetfLanguageTag)));
+
             // Cargar configuración
             var builder = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
@@ -35,10 +46,11 @@ namespace EZBarEscritorio
 
         private void ConfigureServices(IServiceCollection services)
         {
-            var baseUrl = Configuration.GetValue<string>("ApiSettings:BaseUrl") ?? "https://localhost:7082";
-            var tokenJwt = Configuration.GetValue<string>("ApiSettings:JwtToken") ?? "";
+            var baseUrl = Configuration.GetValue<string>("ApiSettings:BaseUrl") ?? "http://localhost:8080";
+            var username = Configuration.GetValue<string>("ApiSettings:Username") ?? "admin";
+            var password = Configuration.GetValue<string>("ApiSettings:Password") ?? "admin123";
 
-            services.AddTransient(sp => new AuthInterceptor(tokenJwt));
+            services.AddTransient(sp => new AuthInterceptor(username, password));
 
             services.AddHttpClient<IApiService, NgrokApiService>(client =>
             {

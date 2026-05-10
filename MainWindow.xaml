@@ -24,8 +24,6 @@
                     <TextBlock Text="EZBAR" FontSize="28" FontWeight="ExtraBold"
                         Foreground="{StaticResource PrimaryGreenBrush}" VerticalAlignment="Center"
                         Margin="0,0,20,0" />
-                    <TextBlock Text="ADMINISTRACIÓN ESTATAL" Foreground="White"
-                        VerticalAlignment="Center" Opacity="0.8" FontSize="14" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
@@ -58,7 +56,7 @@
                                 </StackPanel>
                             </Border>
                             <Button Content="REPORTE EXCEL" Command="{Binding ExportarPagosCommand}"
-                                Background="{StaticResource DarkBrownBrush}" Padding="15,8" Foreground="White" />
+                                Background="{StaticResource DarkBrownBrush}" Padding="20,8" Foreground="White" />
                         </StackPanel>
 
                         <DataGrid Grid.Row="1" ItemsSource="{Binding PagosFiltrados}"
@@ -71,21 +69,15 @@
                                     Binding="{Binding FechaPago, StringFormat=\{0:dd/MM/yyyy HH:mm\}}"
                                     Width="150" />
                                 <DataGridTextColumn Header="METODO" Binding="{Binding MetodoPago}"
-                                    Width="*" />
+                                    Width="100" />
                                 <DataGridTextColumn Header="ESTADO" Binding="{Binding Estado}"
                                     Width="100" />
-                                <DataGridTextColumn Header="MONTO"
-                                    Binding="{Binding Monto, StringFormat=\{0:C\}}" Width="100" />
-                                <DataGridTemplateColumn Header="ACCIONES" Width="150">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="COMPLETAR" FontSize="10" Padding="15,8" Foreground="White"
-                                                Background="{StaticResource PrimaryGreenBrush}" Margin="2"
-                                                Command="{Binding DataContext.CambiarEstadoPagoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                CommandParameter="{Binding}" />
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="TOTAL"
+                                    Binding="{Binding Monto, StringFormat=\{0:C\}}" Width="*" />
+                                <DataGridTextColumn Header="ENTREGADO"
+                                    Binding="{Binding MontoEntregado, StringFormat=\{0:C\}}" Width="*" />
+                                <DataGridTextColumn Header="CAMBIO"
+                                    Binding="{Binding Cambio, StringFormat=\{0:C\}}" Width="*" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -115,7 +107,7 @@
                             </Border>
                             <Button Content="REPORTE EXCEL"
                                 Command="{Binding ExportarPedidosCommand}"
-                                Background="{StaticResource DarkBrownBrush}" Padding="15,8" Foreground="White" />
+                                Background="{StaticResource DarkBrownBrush}" Padding="20,8" Foreground="White" />
                         </StackPanel>
 
                         <DataGrid Grid.Row="1" ItemsSource="{Binding PedidosFiltrados}"
@@ -127,8 +119,10 @@
                                 <DataGridTextColumn Header="FECHA"
                                     Binding="{Binding FechaPedido, StringFormat=\{0:dd/MM/yyyy HH:mm\}}"
                                     Width="150" />
-                                <DataGridTextColumn Header="MESA" Binding="{Binding MesaId}"
-                                    Width="80" />
+                                <DataGridTextColumn Header="MESA" Binding="{Binding NombreMesa}"
+                                    Width="100" />
+                                <DataGridTextColumn Header="ZONA" Binding="{Binding Zona}"
+                                    Width="100" />
                                 <DataGridTextColumn Header="TOTAL"
                                     Binding="{Binding Total, StringFormat=\{0:C\}}" Width="100" />
                                 <DataGridTextColumn Header="ESTADO" Binding="{Binding Estado}"
