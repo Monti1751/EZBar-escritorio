@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EZBarEscritorio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c49bcbe729dc3b21d5d314650de3c7b2e2e5a7b0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+182403a469f18e4d81168f47218e39a7244b57ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("EZBarEscritorio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EZBarEscritorio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

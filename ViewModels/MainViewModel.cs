@@ -15,7 +15,8 @@ namespace EZBarEscritorio.ViewModels
     {
         private readonly IPagoRepository _pagoRepository;
         private readonly IPedidoRepository _pedidoRepository;
-        private readonly ExcelExporter _excelExporter;
+        private readonly IExcelExporter _excelExporter;
+        private readonly IDialogService _dialogService;
         private System.Windows.Threading.DispatcherTimer _timer;
         
         private List<Pago> _pagosCache;
@@ -39,14 +40,23 @@ namespace EZBarEscritorio.ViewModels
         [ObservableProperty]
         private string _statusMessage = "Listo";
 
+        [ObservableProperty]
+        private bool _isConnectionError;
+
+        [ObservableProperty]
+        private DateTime? _fechaSeleccionadaPagos;
+
+        partial void OnFechaSeleccionadaPagosChanged(DateTime? value) => AplicarFiltrosPagos();
+
         partial void OnFiltroPagosChanged(string value) => AplicarFiltrosPagos();
         partial void OnFiltroPedidosChanged(string value) => AplicarFiltrosPedidos();
 
-        public MainViewModel(IPagoRepository pagoRepository, IPedidoRepository pedidoRepository, ExcelExporter excelExporter)
+        public MainViewModel(IPagoRepository pagoRepository, IPedidoRepository pedidoRepository, IExcelExporter excelExporter, IDialogService dialogService)
         {
             _pagoRepository = pagoRepository;
             _pedidoRepository = pedidoRepository;
             _excelExporter = excelExporter;
+            _dialogService = dialogService;
             
             _pagosFiltrados = new ObservableCollection<Pago>();
             _pedidosFiltrados = new ObservableCollection<Pedido>();
@@ -54,26 +64,32 @@ namespace EZBarEscritorio.ViewModels
             _pagosCache = new List<Pago>();
             _pedidosCache = new List<Pedido>();
 
-            // Configurar sincronización en tiempo real (cada 10 segundos)
+            // Configurar sincronización en tiempo real (cada 30 segundos en lugar de 10)
             _timer = new System.Windows.Threading.DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(10);
+            _timer.Interval = TimeSpan.FromSeconds(30);
             _timer.Tick += async (s, e) => {
-                // Solo recargamos en segundo plano si no estamos ya cargando manualmente
-                if (!IsLoading) {
+                // Solo recargamos en segundo plano si no estamos ya cargando manualmente y no hay error
+                if (!IsLoading && !IsConnectionError) {
                     try {
                         var pagos = await _pagoRepository.ObtenerTodosAsync();
                         _pagosCache = pagos.ToList();
                         var pedidos = await _pedidoRepository.ObtenerTodosAsync();
                         _pedidosCache = pedidos.ToList();
                         
-                        System.Windows.Application.Current.Dispatcher.Invoke(() => {
-                            AplicarFiltrosPagos();
-                            AplicarFiltrosPedidos();
-                        });
-                    } catch { } // Ignorar errores silenciosos del timer
+                        AplicarFiltrosPagos();
+                        AplicarFiltrosPedidos();
+                    } catch { 
+                        // El timer falla silenciosamente para no molestar
+                    }
                 }
             };
-            _timer.Start();
+            if (System.Windows.Application.Current != null)
+            {
+                _timer.Start();
+            }
+
+            // La carga inicial se disparará desde el evento Loaded de la vista para evitar bloqueos prematuros
+            // _ = CargarDatosAsync();
         }
 
 
@@ -81,10 +97,14 @@ namespace EZBarEscritorio.ViewModels
         public async Task CargarDatosAsync()
         {
             if (IsLoading) return;
+            
+            // Aseguramos que la UI tenga tiempo de procesar estados iniciales
+            await Task.Yield();
 
-            ActualizarStatus("Sincronizando con la API...");
             SetLoading(true);
-
+            IsConnectionError = false; // Resetear error al intentar de nuevo
+            ActualizarStatus("Sincronizando con la API...");
+            
             try
             {
                 ActualizarStatus("Obteniendo pagos...");
@@ -96,23 +116,19 @@ namespace EZBarEscritorio.ViewModels
                 _pedidosCache = pedidos.ToList();
 
                 ActualizarStatus("Actualizando tablas...");
-                System.Windows.Application.Current.Dispatcher.Invoke(() =>
-                {
-                    AplicarFiltrosPagos();
-                    AplicarFiltrosPedidos();
-                });
+                AplicarFiltrosPagos();
+                AplicarFiltrosPedidos();
                 
                 ActualizarStatus($"Éxito: {_pagosCache.Count} pagos y {_pedidosCache.Count} pedidos cargados.");
             }
             catch (Exception ex)
             {
-                var msg = $"Error: {ex.Message}";
+                var msg = $"Error de conexión: {ex.Message}";
                 if (ex.InnerException != null) msg += $" -> {ex.InnerException.Message}";
-                ActualizarStatus(msg);
                 
-                System.Windows.Application.Current.Dispatcher.Invoke(() => {
-                    System.Windows.MessageBox.Show(msg, "Error de Red", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                });
+                // Si es un timeout o error de red, lo reflejamos en la UI
+                ActualizarStatus(msg);
+                IsConnectionError = true;
             }
             finally
             {
@@ -121,10 +137,18 @@ namespace EZBarEscritorio.ViewModels
         }
 
         [RelayCommand]
+        public async Task RetryConnectionAsync()
+        {
+            await CargarDatosAsync();
+        }
+
+        [RelayCommand]
         public void AplicarFiltrosPagos()
         {
-            System.Windows.Application.Current.Dispatcher.Invoke(() => {
-                var resultado = _pagoRepository.FiltrarPagos(_pagosCache, FiltroPagos, null);
+            var resultado = _pagoRepository.FiltrarPagos(_pagosCache, FiltroPagos, FechaSeleccionadaPagos);
+            
+            // Aseguramos que la actualización de la colección observable sea en el hilo de UI
+            ExecuteOnUIThread(() => {
                 PagosFiltrados.Clear();
                 foreach (var p in resultado) PagosFiltrados.Add(p);
             });
@@ -133,8 +157,9 @@ namespace EZBarEscritorio.ViewModels
         [RelayCommand]
         public void AplicarFiltrosPedidos()
         {
-            System.Windows.Application.Current.Dispatcher.Invoke(() => {
-                var resultado = _pedidoRepository.FiltrarPedidos(_pedidosCache, FiltroPedidos, null);
+            var resultado = _pedidoRepository.FiltrarPedidos(_pedidosCache, FiltroPedidos, FechaSeleccionadaPagos);
+            
+            ExecuteOnUIThread(() => {
                 PedidosFiltrados.Clear();
                 foreach (var p in resultado) PedidosFiltrados.Add(p);
             });
@@ -142,16 +167,12 @@ namespace EZBarEscritorio.ViewModels
 
         private void ActualizarStatus(string msg)
         {
-            System.Windows.Application.Current.Dispatcher.Invoke(() => {
-                StatusMessage = msg;
-            });
+            ExecuteOnUIThread(() => StatusMessage = msg);
         }
 
         private void SetLoading(bool loading)
         {
-            System.Windows.Application.Current.Dispatcher.Invoke(() => {
-                IsLoading = loading;
-            });
+            ExecuteOnUIThread(() => IsLoading = loading);
         }
 
         [RelayCommand]
@@ -163,7 +184,8 @@ namespace EZBarEscritorio.ViewModels
             try 
             {
                 ActualizarStatus($"Pago {pago.Id} verificado. El pedido {pago.PedidoId} ya está completado.");
-                System.Windows.MessageBox.Show($"El pago {pago.Id} del pedido {pago.PedidoId} ya se encuentra completado y registrado correctamente.", "Pago Completado", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                _dialogService.ShowMessage($"El pago {pago.Id} del pedido {pago.PedidoId} ya se encuentra completado y registrado correctamente.", "Pago Completado");
+                SetLoading(false);
                 await CargarDatosAsync();
             }
             finally 
@@ -178,6 +200,7 @@ namespace EZBarEscritorio.ViewModels
             if (pedido == null) return;
             SetLoading(true);
             bool exito = await _pedidoRepository.ActualizarEstadoPedidoAsync(pedido.Id, "Listo");
+            SetLoading(false);
             if (exito) 
             {
                 ActualizarStatus($"Pedido {pedido.Id} marcado como listo");
@@ -187,7 +210,6 @@ namespace EZBarEscritorio.ViewModels
             {
                 ActualizarStatus($"Error al actualizar pedido {pedido.Id}");
             }
-            SetLoading(false);
         }
 
         [RelayCommand]
@@ -195,23 +217,17 @@ namespace EZBarEscritorio.ViewModels
         {
             if (pedido == null) return;
 
-            // Abrir la nueva ventana de pago
-            var pagoWindow = new PagoWindow(pedido.Total);
-            bool? result = null;
+            // Abrir la nueva ventana de pago a través del servicio
+            string metodoPago;
+            decimal montoEntregado;
+            decimal cambio;
             
-            // Necesitamos asegurarnos de que la ventana se abre en el hilo de UI
-            System.Windows.Application.Current.Dispatcher.Invoke(() => {
-                result = pagoWindow.ShowDialog();
-            });
+            bool? result = _dialogService.ShowPagoDialog(pedido.Total, out metodoPago, out montoEntregado, out cambio);
             
             if (result != true) return;
 
-            string metodoPago = pagoWindow.MetodoPagoSeleccionado;
-            decimal montoEntregado = pagoWindow.MontoEntregado;
-            decimal cambio = pagoWindow.Cambio;
-
             // Optimistic UI Update: Ocultar inmediatamente de la tabla para dar sensación de tiempo real
-            System.Windows.Application.Current.Dispatcher.Invoke(() => {
+            ExecuteOnUIThread(() => {
                 PedidosFiltrados.Remove(pedido);
             });
 
@@ -221,6 +237,8 @@ namespace EZBarEscritorio.ViewModels
                 ActualizarStatus($"Registrando pago con {metodoPago}...");
                 // 1. Crear el registro de pago con el método seleccionado
                 bool pagoOk = await _pagoRepository.CrearPagoAsync(pedido.Id, pedido.Total, metodoPago, montoEntregado, cambio);
+                
+                SetLoading(false); // IMPORTANTE: Liberar para que CargarDatosAsync pueda ejecutarse
                 
                 if (pagoOk)
                 {
@@ -235,6 +253,7 @@ namespace EZBarEscritorio.ViewModels
             }
             catch (Exception ex)
             {
+                SetLoading(false);
                 ActualizarStatus($"Error en el proceso de pago: {ex.Message}");
                 await CargarDatosAsync(); // Revertir estado si falla
             }
@@ -247,23 +266,18 @@ namespace EZBarEscritorio.ViewModels
         [RelayCommand]
         public void ExportarPagos()
         {
-            var dialog = new Microsoft.Win32.SaveFileDialog
-            {
-                FileName = "Pagos_Export.xlsx",
-                DefaultExt = ".xlsx",
-                Filter = "Excel documents (.xlsx)|*.xlsx"
-            };
+            string? fileName = _dialogService.ShowSaveFileDialog("Pagos_Export.xlsx", "Excel documents (.xlsx)|*.xlsx");
 
-            if (dialog.ShowDialog() == true)
+            if (fileName != null)
             {
                 try
                 {
-                    _excelExporter.ExportarPagos(PagosFiltrados, dialog.FileName);
-                    System.Windows.MessageBox.Show("Archivo de Pagos exportado correctamente.", "Éxito", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                    _excelExporter.ExportarPagos(PagosFiltrados, fileName);
+                    _dialogService.ShowMessage("Archivo de Pagos exportado correctamente.", "Éxito");
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.MessageBox.Show($"Error al exportar: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    _dialogService.ShowMessage($"Error al exportar: {ex.Message}", "Error", true);
                 }
             }
         }
@@ -271,24 +285,38 @@ namespace EZBarEscritorio.ViewModels
         [RelayCommand]
         public void ExportarPedidos()
         {
-            var dialog = new Microsoft.Win32.SaveFileDialog
-            {
-                FileName = "Pedidos_Export.xlsx",
-                DefaultExt = ".xlsx",
-                Filter = "Excel documents (.xlsx)|*.xlsx"
-            };
+            string? fileName = _dialogService.ShowSaveFileDialog("Pedidos_Export.xlsx", "Excel documents (.xlsx)|*.xlsx");
 
-            if (dialog.ShowDialog() == true)
+            if (fileName != null)
             {
                 try
                 {
-                    _excelExporter.ExportarPedidos(PedidosFiltrados, dialog.FileName);
-                    System.Windows.MessageBox.Show("Archivo de Pedidos exportado correctamente.", "Éxito", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+                    _excelExporter.ExportarPedidos(PedidosFiltrados, fileName);
+                    _dialogService.ShowMessage("Archivo de Pedidos exportado correctamente.", "Éxito");
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.MessageBox.Show($"Error al exportar: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    _dialogService.ShowMessage($"Error al exportar: {ex.Message}", "Error", true);
                 }
+            }
+        }
+
+        [RelayCommand]
+        public void LimpiarFiltros()
+        {
+            FiltroPagos = string.Empty;
+            FiltroPedidos = string.Empty;
+            FechaSeleccionadaPagos = null;
+        }
+        private void ExecuteOnUIThread(Action action)
+        {
+            if (System.Windows.Application.Current?.Dispatcher != null)
+            {
+                System.Windows.Application.Current.Dispatcher.Invoke(action);
+            }
+            else
+            {
+                action();
             }
         }
     }

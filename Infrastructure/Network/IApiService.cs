@@ -28,26 +28,26 @@ namespace EZBarEscritorio.Infrastructure.Network
 
         public async Task<IEnumerable<T>> GetAsync<T>(string endpoint)
         {
-            var response = await _httpClient.GetAsync(endpoint);
+            var response = await _httpClient.GetAsync(endpoint).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<IEnumerable<T>>() ?? Array.Empty<T>();
+            return await response.Content.ReadFromJsonAsync<IEnumerable<T>>().ConfigureAwait(false) ?? Array.Empty<T>();
         }
 
         public async Task<bool> PatchAsync<T>(string endpoint, T payload)
         {
-            var response = await _httpClient.PatchAsJsonAsync(endpoint, payload);
+            var response = await _httpClient.PatchAsJsonAsync(endpoint, payload).ConfigureAwait(false);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> PutAsync<T>(string endpoint, T payload)
         {
-            var response = await _httpClient.PutAsJsonAsync(endpoint, payload);
+            var response = await _httpClient.PutAsJsonAsync(endpoint, payload).ConfigureAwait(false);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> PostAsync<T>(string endpoint, T payload)
         {
-            var response = await _httpClient.PostAsJsonAsync(endpoint, payload);
+            var response = await _httpClient.PostAsJsonAsync(endpoint, payload).ConfigureAwait(false);
             return response.IsSuccessStatusCode;
         }
     }

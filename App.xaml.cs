@@ -12,6 +12,7 @@ using EZBarEscritorio.ViewModels;
 
 namespace EZBarEscritorio
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public partial class App : Application
     {
         public IConfiguration Configuration { get; private set; }
@@ -19,6 +20,15 @@ namespace EZBarEscritorio
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            // Manejador global de excepciones para evitar cierres inesperados
+            this.DispatcherUnhandledException += (s, ev) => {
+                if (ev.Exception is System.Net.Http.HttpRequestException || ev.Exception is System.Net.Sockets.SocketException)
+                {
+                    // Los errores de red ya se manejan en el ViewModel, evitamos el crash
+                    ev.Handled = true; 
+                }
+            };
+
             // Configurar cultura a español (España) para usar € en lugar de $
             var culture = new CultureInfo("es-ES");
             Thread.CurrentThread.CurrentCulture = culture;
@@ -55,12 +65,14 @@ namespace EZBarEscritorio
             services.AddHttpClient<IApiService, NgrokApiService>(client =>
             {
                 client.BaseAddress = new Uri(baseUrl);
+                client.Timeout = TimeSpan.FromSeconds(10);
             }).AddHttpMessageHandler<AuthInterceptor>();
 
             services.AddTransient<IPagoRepository, PagoRepository>();
             services.AddTransient<IPedidoRepository, PedidoRepository>();
 
-            services.AddTransient<ExcelExporter>();
+            services.AddTransient<IExcelExporter, ExcelExporter>();
+            services.AddTransient<IDialogService, DialogService>();
 
             services.AddTransient<MainViewModel>();
         }

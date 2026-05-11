@@ -4,10 +4,11 @@ using EZBarEscritorio.Domain.Models;
 
 namespace EZBarEscritorio.Services
 {
-    public class ExcelExporter
+    public class ExcelExporter : IExcelExporter
     {
         public void ExportarPagos(IEnumerable<Pago> pagos, string rutaArchivo)
         {
+            if (pagos == null) return;
             using var workbook = new XLWorkbook();
             var worksheet = workbook.Worksheets.Add("Pagos");
 
@@ -51,6 +52,7 @@ namespace EZBarEscritorio.Services
 
         public void ExportarPedidos(IEnumerable<Pedido> pedidos, string rutaArchivo)
         {
+            if (pedidos == null) return;
             using var workbook = new XLWorkbook();
             var worksheet = workbook.Worksheets.Add("Pedidos");
 
