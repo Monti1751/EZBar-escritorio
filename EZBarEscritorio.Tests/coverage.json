@@ -1,0 +1,1820 @@
+{
+  "EZBarEscritorio.dll": {
+    "D:\\GitHub\\EZBar-escritorio\\obj\\Debug\\net9.0-windows\\GeneratedInternalTypeHelper.g.cs": {
+      "XamlGeneratedNamespace.GeneratedInternalTypeHelper": {
+        "System.Object XamlGeneratedNamespace.GeneratedInternalTypeHelper::CreateInstance(System.Type,System.Globalization.CultureInfo)": {
+          "Lines": {
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        },
+        "System.Object XamlGeneratedNamespace.GeneratedInternalTypeHelper::GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)": {
+          "Lines": {
+            "32": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": []
+        },
+        "System.Void XamlGeneratedNamespace.GeneratedInternalTypeHelper::SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)": {
+          "Lines": {
+            "39": 0,
+            "40": 0,
+            "41": 0
+          },
+          "Branches": []
+        },
+        "System.Delegate XamlGeneratedNamespace.GeneratedInternalTypeHelper::CreateDelegate(System.Type,System.Object,System.String)": {
+          "Lines": {
+            "46": 0,
+            "47": 0,
+            "48": 0,
+            "49": 0,
+            "50": 0,
+            "51": 0
+          },
+          "Branches": []
+        },
+        "System.Void XamlGeneratedNamespace.GeneratedInternalTypeHelper::AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)": {
+          "Lines": {
+            "56": 0,
+            "57": 0,
+            "58": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\ViewModels\\MainViewModel.cs": {
+      "EZBarEscritorio.ViewModels.MainViewModel": {
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::AplicarFiltrosPagos()": {
+          "Lines": {
+            "147": 13,
+            "148": 13,
+            "151": 26,
+            "152": 13,
+            "153": 42,
+            "154": 26,
+            "155": 13
+          },
+          "Branches": [
+            {
+              "Line": 153,
+              "Offset": 64,
+              "EndOffset": 33,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 153,
+              "Offset": 64,
+              "EndOffset": 66,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 13
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::AplicarFiltrosPedidos()": {
+          "Lines": {
+            "159": 10,
+            "160": 10,
+            "162": 20,
+            "163": 10,
+            "164": 33,
+            "165": 20,
+            "166": 10
+          },
+          "Branches": [
+            {
+              "Line": 164,
+              "Offset": 64,
+              "EndOffset": 33,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 164,
+              "Offset": 64,
+              "EndOffset": 66,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 10
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::ActualizarStatus(System.String)": {
+          "Lines": {
+            "169": 45,
+            "170": 90,
+            "171": 45
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::SetLoading(System.Boolean)": {
+          "Lines": {
+            "174": 29,
+            "175": 58,
+            "176": 29
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::ExportarPagos()": {
+          "Lines": {
+            "268": 2,
+            "269": 2,
+            "271": 2,
+            "272": 2,
+            "274": 2,
+            "275": 2,
+            "276": 1,
+            "277": 1,
+            "278": 1,
+            "279": 1,
+            "280": 1,
+            "281": 1,
+            "282": 2,
+            "283": 2
+          },
+          "Branches": [
+            {
+              "Line": 271,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 271,
+              "Offset": 29,
+              "EndOffset": 118,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::ExportarPedidos()": {
+          "Lines": {
+            "287": 0,
+            "288": 0,
+            "290": 0,
+            "291": 0,
+            "293": 0,
+            "294": 0,
+            "295": 0,
+            "296": 0,
+            "297": 0,
+            "298": 0,
+            "299": 0,
+            "300": 0,
+            "301": 0,
+            "302": 0
+          },
+          "Branches": [
+            {
+              "Line": 290,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 290,
+              "Offset": 29,
+              "EndOffset": 118,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::LimpiarFiltros()": {
+          "Lines": {
+            "306": 1,
+            "307": 1,
+            "308": 1,
+            "309": 1,
+            "310": 1
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::ExecuteOnUIThread(System.Action)": {
+          "Lines": {
+            "312": 99,
+            "313": 99,
+            "314": 0,
+            "315": 0,
+            "316": 0,
+            "318": 99,
+            "319": 99,
+            "320": 99,
+            "321": 99
+          },
+          "Branches": [
+            {
+              "Line": 313,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 99
+            },
+            {
+              "Line": 313,
+              "Offset": 7,
+              "EndOffset": 13,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 313,
+              "Offset": 23,
+              "EndOffset": 25,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 313,
+              "Offset": 23,
+              "EndOffset": 46,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 99
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::OnFiltroPagosChanged(System.String)": {
+          "Lines": {
+            "51": 3
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::OnFiltroPedidosChanged(System.String)": {
+          "Lines": {
+            "52": 3
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::OnFechaSeleccionadaPagosChanged(System.Nullable`1<System.DateTime>)": {
+          "Lines": {
+            "49": 3
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel::.ctor(EZBarEscritorio.Repositories.IPagoRepository,EZBarEscritorio.Repositories.IPedidoRepository,EZBarEscritorio.Services.IExcelExporter,EZBarEscritorio.Services.IDialogService)": {
+          "Lines": {
+            "41": 15,
+            "54": 15,
+            "55": 15,
+            "56": 15,
+            "57": 15,
+            "58": 15,
+            "59": 15,
+            "61": 15,
+            "62": 15,
+            "64": 15,
+            "65": 15,
+            "68": 15,
+            "69": 15,
+            "70": 15,
+            "71": 15,
+            "72": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 15,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 15,
+            "83": 0,
+            "84": 0,
+            "85": 15,
+            "86": 15,
+            "87": 0,
+            "88": 0,
+            "89": 0,
+            "93": 15
+          },
+          "Branches": [
+            {
+              "Line": 86,
+              "Offset": 157,
+              "EndOffset": 159,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 86,
+              "Offset": 157,
+              "EndOffset": 173,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 15
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.ViewModels.MainViewModel/<>c__DisplayClass24_0": {
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel/<>c__DisplayClass24_0::<PagarPedidoAsync>b__0()": {
+          "Lines": {
+            "230": 4,
+            "231": 2,
+            "232": 4
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.ViewModels.MainViewModel/<CambiarEstadoPagoAsync>d__22": {
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel/<CambiarEstadoPagoAsync>d__22::MoveNext()": {
+          "Lines": {
+            "180": 1,
+            "181": 1,
+            "183": 1,
+            "185": 1,
+            "186": 1,
+            "187": 1,
+            "188": 1,
+            "189": 1,
+            "190": 1,
+            "192": 1,
+            "193": 1,
+            "194": 1,
+            "195": 1
+          },
+          "Branches": [
+            {
+              "Line": 181,
+              "Offset": 21,
+              "EndOffset": 23,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 181,
+              "Offset": 21,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 181,
+              "Offset": 42,
+              "EndOffset": 44,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 181,
+              "Offset": 42,
+              "EndOffset": 49,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.ViewModels.MainViewModel/<CambiarEstadoPedidoAsync>d__23": {
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel/<CambiarEstadoPedidoAsync>d__23::MoveNext()": {
+          "Lines": {
+            "199": 2,
+            "200": 2,
+            "201": 2,
+            "202": 2,
+            "203": 2,
+            "204": 2,
+            "205": 1,
+            "206": 1,
+            "207": 1,
+            "208": 1,
+            "210": 1,
+            "211": 1,
+            "212": 1,
+            "213": 2
+          },
+          "Branches": [
+            {
+              "Line": 200,
+              "Offset": 37,
+              "EndOffset": 39,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 200,
+              "Offset": 37,
+              "EndOffset": 44,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 204,
+              "Offset": 219,
+              "EndOffset": 224,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 204,
+              "Offset": 219,
+              "EndOffset": 406,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.ViewModels.MainViewModel/<CargarDatosAsync>d__16": {
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel/<CargarDatosAsync>d__16::MoveNext()": {
+          "Lines": {
+            "98": 8,
+            "99": 8,
+            "102": 8,
+            "104": 8,
+            "105": 8,
+            "106": 8,
+            "109": 8,
+            "110": 8,
+            "111": 8,
+            "112": 7,
+            "114": 7,
+            "115": 7,
+            "116": 7,
+            "118": 7,
+            "119": 7,
+            "120": 7,
+            "122": 7,
+            "123": 7,
+            "124": 1,
+            "125": 1,
+            "126": 1,
+            "127": 1,
+            "130": 1,
+            "131": 1,
+            "132": 1,
+            "134": 8,
+            "135": 8,
+            "136": 8,
+            "137": 8
+          },
+          "Branches": [
+            {
+              "Line": 98,
+              "Offset": 16,
+              "EndOffset": 27,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 8
+            },
+            {
+              "Line": 99,
+              "Offset": 41,
+              "EndOffset": 43,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 99,
+              "Offset": 41,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 8
+            },
+            {
+              "Line": 102,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 8
+            },
+            {
+              "Line": 102,
+              "Offset": 69,
+              "EndOffset": 139,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 8
+            },
+            {
+              "Line": 98,
+              "Offset": 16,
+              "EndOffset": 190,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 8
+            },
+            {
+              "Line": 127,
+              "Offset": 852,
+              "EndOffset": 854,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 127,
+              "Offset": 852,
+              "EndOffset": 892,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.ViewModels.MainViewModel/<PagarPedidoAsync>d__24": {
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel/<PagarPedidoAsync>d__24::MoveNext()": {
+          "Lines": {
+            "217": 2,
+            "218": 2,
+            "225": 2,
+            "227": 2,
+            "234": 2,
+            "236": 2,
+            "237": 2,
+            "239": 2,
+            "241": 2,
+            "243": 2,
+            "244": 1,
+            "245": 1,
+            "246": 1,
+            "247": 1,
+            "249": 1,
+            "250": 1,
+            "251": 1,
+            "252": 1,
+            "253": 2,
+            "254": 0,
+            "255": 0,
+            "256": 0,
+            "257": 0,
+            "258": 0,
+            "259": 0,
+            "261": 2,
+            "262": 2,
+            "263": 2,
+            "264": 2
+          },
+          "Branches": [
+            {
+              "Line": 218,
+              "Offset": 80,
+              "EndOffset": 82,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 218,
+              "Offset": 80,
+              "EndOffset": 87,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 227,
+              "Offset": 159,
+              "EndOffset": 161,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 227,
+              "Offset": 159,
+              "EndOffset": 166,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 2
+            },
+            {
+              "Line": 243,
+              "Offset": 502,
+              "EndOffset": 507,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 243,
+              "Offset": 502,
+              "EndOffset": 695,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.ViewModels.MainViewModel/<RetryConnectionAsync>d__17": {
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel/<RetryConnectionAsync>d__17::MoveNext()": {
+          "Lines": {
+            "141": 1,
+            "142": 1,
+            "143": 1
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.ViewModels.MainViewModel/<<-ctor>b__15_0>d": {
+        "System.Void EZBarEscritorio.ViewModels.MainViewModel/<<-ctor>b__15_0>d::MoveNext()": {
+          "Lines": {},
+          "Branches": [
+            {
+              "Line": 72,
+              "Offset": 27,
+              "EndOffset": 29,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 27,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 48,
+              "EndOffset": 53,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 48,
+              "EndOffset": 428,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\ViewModels\\PagoViewModel.cs": {
+      "EZBarEscritorio.ViewModels.PagoViewModel": {
+        "System.Decimal EZBarEscritorio.ViewModels.PagoViewModel::get_MontoEntregado()": {
+          "Lines": {
+            "25": 4
+          },
+          "Branches": []
+        },
+        "System.Decimal EZBarEscritorio.ViewModels.PagoViewModel::get_Cambio()": {
+          "Lines": {
+            "26": 4
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.ViewModels.PagoViewModel::ValidarEfectivo()": {
+          "Lines": {
+            "55": 6,
+            "56": 6,
+            "58": 6,
+            "59": 6,
+            "60": 2,
+            "61": 2,
+            "62": 2,
+            "63": 1,
+            "64": 1,
+            "65": 1,
+            "66": 1,
+            "67": 1,
+            "68": 1,
+            "70": 1,
+            "71": 1,
+            "72": 1,
+            "73": 1,
+            "74": 2,
+            "76": 4,
+            "77": 4,
+            "78": 4,
+            "79": 4,
+            "80": 6
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 12,
+              "EndOffset": 19,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 6
+            },
+            {
+              "Line": 59,
+              "Offset": 51,
+              "EndOffset": 56,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 62,
+              "Offset": 87,
+              "EndOffset": 89,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 62,
+              "Offset": 87,
+              "EndOffset": 170,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 59,
+              "Offset": 51,
+              "EndOffset": 195,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 56,
+              "Offset": 12,
+              "EndOffset": 217,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 6
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.ViewModels.PagoViewModel::OnMetodoPagoChanged(System.String)": {
+          "Lines": {
+            "35": 1,
+            "36": 1,
+            "37": 1,
+            "38": 1,
+            "39": 1,
+            "40": 1,
+            "41": 1,
+            "42": 1,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 1
+          },
+          "Branches": [
+            {
+              "Line": 37,
+              "Offset": 30,
+              "EndOffset": 32,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 37,
+              "Offset": 30,
+              "EndOffset": 69,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.ViewModels.PagoViewModel::OnMontoRecibidoStrChanged(System.String)": {
+          "Lines": {
+            "50": 2,
+            "51": 2,
+            "52": 2
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.ViewModels.PagoViewModel::.ctor(System.Decimal)": {
+          "Lines": {
+            "11": 4,
+            "14": 4,
+            "17": 4,
+            "23": 4,
+            "28": 4,
+            "29": 4,
+            "30": 4,
+            "31": 4,
+            "32": 4
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\Services\\ExcelExporter.cs": {
+      "EZBarEscritorio.Services.ExcelExporter": {
+        "System.Void EZBarEscritorio.Services.ExcelExporter::ExportarPagos(System.Collections.Generic.IEnumerable`1<EZBarEscritorio.Domain.Models.Pago>,System.String)": {
+          "Lines": {
+            "10": 2,
+            "11": 3,
+            "12": 1,
+            "13": 1,
+            "16": 1,
+            "17": 1,
+            "18": 1,
+            "19": 1,
+            "20": 1,
+            "21": 1,
+            "22": 1,
+            "25": 1,
+            "26": 1,
+            "27": 1,
+            "28": 1,
+            "31": 1,
+            "32": 3,
+            "33": 0,
+            "34": 0,
+            "35": 0,
+            "36": 0,
+            "37": 0,
+            "38": 0,
+            "39": 0,
+            "40": 0,
+            "43": 0,
+            "44": 0,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "49": 1,
+            "50": 1,
+            "51": 3
+          },
+          "Branches": [
+            {
+              "Line": 11,
+              "Offset": 9,
+              "EndOffset": 16,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 32,
+              "Offset": 592,
+              "EndOffset": 301,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 592,
+              "EndOffset": 597,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 11,
+              "Offset": 9,
+              "EndOffset": 645,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.Services.ExcelExporter::ExportarPedidos(System.Collections.Generic.IEnumerable`1<EZBarEscritorio.Domain.Models.Pedido>,System.String)": {
+          "Lines": {
+            "54": 1,
+            "55": 2,
+            "56": 0,
+            "57": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "68": 0,
+            "69": 0,
+            "70": 0,
+            "71": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "85": 0,
+            "86": 0,
+            "87": 0,
+            "89": 0,
+            "90": 0,
+            "91": 1
+          },
+          "Branches": [
+            {
+              "Line": 55,
+              "Offset": 9,
+              "EndOffset": 16,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 75,
+              "Offset": 484,
+              "EndOffset": 277,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 75,
+              "Offset": 484,
+              "EndOffset": 489,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 9,
+              "EndOffset": 537,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\Repositories\\PagoRepository.cs": {
+      "EZBarEscritorio.Repositories.PagoRepository": {
+        "System.Collections.Generic.IEnumerable`1<EZBarEscritorio.Domain.Models.Pago> EZBarEscritorio.Repositories.PagoRepository::FiltrarPagos(System.Collections.Generic.IEnumerable`1<EZBarEscritorio.Domain.Models.Pago>,System.String,System.Nullable`1<System.DateTime>)": {
+          "Lines": {
+            "45": 5,
+            "46": 5,
+            "48": 5,
+            "49": 3,
+            "50": 3,
+            "51": 3,
+            "52": 3,
+            "54": 5,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "59": 5,
+            "60": 5
+          },
+          "Branches": [
+            {
+              "Line": 48,
+              "Offset": 44,
+              "EndOffset": 49,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 3
+            },
+            {
+              "Line": 48,
+              "Offset": 44,
+              "EndOffset": 286,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 5
+            },
+            {
+              "Line": 54,
+              "Offset": 301,
+              "EndOffset": 306,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 54,
+              "Offset": 301,
+              "EndOffset": 489,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 5
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.Repositories.PagoRepository::.ctor(EZBarEscritorio.Infrastructure.Network.IApiService)": {
+          "Lines": {
+            "22": 8,
+            "23": 8,
+            "24": 8,
+            "25": 8
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Repositories.PagoRepository/<>c": {
+        "EZBarEscritorio.Domain.Models.Pago EZBarEscritorio.Repositories.PagoRepository/<>c::<ObtenerTodosAsync>b__2_0(EZBarEscritorio.Domain.Models.PagoDto)": {
+          "Lines": {
+            "31": 5,
+            "32": 5,
+            "33": 5,
+            "34": 5,
+            "35": 5,
+            "36": 5,
+            "37": 5,
+            "38": 5,
+            "39": 5,
+            "40": 5,
+            "41": 5
+          },
+          "Branches": [
+            {
+              "Line": 31,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 31,
+              "Offset": 26,
+              "EndOffset": 32,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 31,
+              "Offset": 77,
+              "EndOffset": 79,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 31,
+              "Offset": 77,
+              "EndOffset": 83,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 31,
+              "Offset": 89,
+              "EndOffset": 91,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 31,
+              "Offset": 89,
+              "EndOffset": 97,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 4
+            },
+            {
+              "Line": 31,
+              "Offset": 131,
+              "EndOffset": 133,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 31,
+              "Offset": 131,
+              "EndOffset": 141,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.Repositories.PagoRepository/<ActualizarEstadoPagoAsync>d__4": {
+        "System.Void EZBarEscritorio.Repositories.PagoRepository/<ActualizarEstadoPagoAsync>d__4::MoveNext()": {
+          "Lines": {
+            "63": 2,
+            "65": 2,
+            "66": 2,
+            "67": 2
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Repositories.PagoRepository/<CrearPagoAsync>d__5": {
+        "System.Void EZBarEscritorio.Repositories.PagoRepository/<CrearPagoAsync>d__5::MoveNext()": {
+          "Lines": {
+            "70": 0,
+            "73": 0,
+            "74": 0,
+            "75": 0,
+            "76": 0,
+            "77": 0,
+            "78": 0,
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "83": 0,
+            "84": 0
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Repositories.PagoRepository/<ObtenerTodosAsync>d__2": {
+        "System.Void EZBarEscritorio.Repositories.PagoRepository/<ObtenerTodosAsync>d__2::MoveNext()": {
+          "Lines": {
+            "28": 1,
+            "29": 1,
+            "42": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\Repositories\\PedidoRepository.cs": {
+      "EZBarEscritorio.Repositories.PedidoRepository": {
+        "System.Collections.Generic.IEnumerable`1<EZBarEscritorio.Domain.Models.Pedido> EZBarEscritorio.Repositories.PedidoRepository::FiltrarPedidos(System.Collections.Generic.IEnumerable`1<EZBarEscritorio.Domain.Models.Pedido>,System.String,System.Nullable`1<System.DateTime>)": {
+          "Lines": {
+            "43": 4,
+            "44": 4,
+            "47": 4,
+            "48": 4,
+            "50": 4,
+            "51": 2,
+            "52": 2,
+            "53": 2,
+            "55": 4,
+            "56": 1,
+            "57": 1,
+            "58": 1,
+            "60": 4,
+            "61": 4
+          },
+          "Branches": [
+            {
+              "Line": 50,
+              "Offset": 317,
+              "EndOffset": 322,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 50,
+              "Offset": 317,
+              "EndOffset": 536,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 55,
+              "Offset": 551,
+              "EndOffset": 556,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 55,
+              "Offset": 551,
+              "EndOffset": 739,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            }
+          ]
+        },
+        "System.Void EZBarEscritorio.Repositories.PedidoRepository::.ctor(EZBarEscritorio.Infrastructure.Network.IApiService)": {
+          "Lines": {
+            "21": 8,
+            "22": 8,
+            "23": 8,
+            "24": 8
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Repositories.PedidoRepository/<>c": {
+        "EZBarEscritorio.Domain.Models.Pedido EZBarEscritorio.Repositories.PedidoRepository/<>c::<ObtenerTodosAsync>b__2_0(EZBarEscritorio.Domain.Models.PedidoDto)": {
+          "Lines": {
+            "30": 5,
+            "31": 5,
+            "32": 5,
+            "33": 5,
+            "34": 5,
+            "35": 5,
+            "36": 5,
+            "37": 5,
+            "38": 5,
+            "39": 5
+          },
+          "Branches": [
+            {
+              "Line": 30,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 26,
+              "EndOffset": 32,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 30,
+              "Offset": 51,
+              "EndOffset": 53,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 51,
+              "EndOffset": 57,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 30,
+              "Offset": 63,
+              "EndOffset": 65,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 97,
+              "EndOffset": 99,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 97,
+              "EndOffset": 111,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 63,
+              "EndOffset": 129,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 4
+            },
+            {
+              "Line": 30,
+              "Offset": 143,
+              "EndOffset": 145,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 143,
+              "EndOffset": 149,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 4
+            },
+            {
+              "Line": 30,
+              "Offset": 155,
+              "EndOffset": 157,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 155,
+              "EndOffset": 163,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.Repositories.PedidoRepository/<ActualizarEstadoPedidoAsync>d__4": {
+        "System.Void EZBarEscritorio.Repositories.PedidoRepository/<ActualizarEstadoPedidoAsync>d__4::MoveNext()": {
+          "Lines": {
+            "64": 2,
+            "69": 2,
+            "70": 1,
+            "71": 1,
+            "75": 1,
+            "76": 1,
+            "77": 2
+          },
+          "Branches": [
+            {
+              "Line": 69,
+              "Offset": 52,
+              "EndOffset": 57,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 69,
+              "Offset": 52,
+              "EndOffset": 244,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.Repositories.PedidoRepository/<ObtenerTodosAsync>d__2": {
+        "System.Void EZBarEscritorio.Repositories.PedidoRepository/<ObtenerTodosAsync>d__2::MoveNext()": {
+          "Lines": {
+            "27": 1,
+            "28": 1,
+            "40": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\Infrastructure\\Network\\AuthInterceptor.cs": {
+      "EZBarEscritorio.Infrastructure.Network.AuthInterceptor": {
+        "System.Void EZBarEscritorio.Infrastructure.Network.AuthInterceptor::.ctor(System.String,System.String)": {
+          "Lines": {
+            "15": 1,
+            "16": 1,
+            "17": 1,
+            "18": 1,
+            "19": 1
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Infrastructure.Network.AuthInterceptor/<SendAsync>d__3": {
+        "System.Void EZBarEscritorio.Infrastructure.Network.AuthInterceptor/<SendAsync>d__3::MoveNext()": {
+          "Lines": {
+            "23": 1,
+            "25": 1,
+            "26": 1,
+            "27": 1,
+            "28": 1,
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "33": 1,
+            "35": 1,
+            "37": 0,
+            "38": 0,
+            "41": 0,
+            "43": 1
+          },
+          "Branches": [
+            {
+              "Line": 26,
+              "Offset": 43,
+              "EndOffset": 45,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 26,
+              "Offset": 43,
+              "EndOffset": 66,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 26,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 26,
+              "Offset": 69,
+              "EndOffset": 185,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\Infrastructure\\Network\\IApiService.cs": {
+      "EZBarEscritorio.Infrastructure.Network.NgrokApiService": {
+        "System.Void EZBarEscritorio.Infrastructure.Network.NgrokApiService::.ctor(System.Net.Http.HttpClient)": {
+          "Lines": {
+            "22": 5,
+            "23": 5,
+            "24": 5,
+            "25": 5,
+            "26": 5,
+            "27": 5
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Infrastructure.Network.NgrokApiService/<GetAsync>d__2`1": {
+        "System.Void EZBarEscritorio.Infrastructure.Network.NgrokApiService/<GetAsync>d__2`1::MoveNext()": {
+          "Lines": {
+            "30": 1,
+            "31": 1,
+            "32": 1,
+            "33": 1,
+            "34": 1
+          },
+          "Branches": [
+            {
+              "Line": 33,
+              "Offset": 323,
+              "EndOffset": 325,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 33,
+              "Offset": 323,
+              "EndOffset": 331,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "EZBarEscritorio.Infrastructure.Network.NgrokApiService/<PatchAsync>d__3`1": {
+        "System.Void EZBarEscritorio.Infrastructure.Network.NgrokApiService/<PatchAsync>d__3`1::MoveNext()": {
+          "Lines": {
+            "37": 1,
+            "38": 1,
+            "39": 1,
+            "40": 1
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Infrastructure.Network.NgrokApiService/<PostAsync>d__5`1": {
+        "System.Void EZBarEscritorio.Infrastructure.Network.NgrokApiService/<PostAsync>d__5`1::MoveNext()": {
+          "Lines": {
+            "49": 1,
+            "50": 1,
+            "51": 1,
+            "52": 1
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Infrastructure.Network.NgrokApiService/<PutAsync>d__4`1": {
+        "System.Void EZBarEscritorio.Infrastructure.Network.NgrokApiService/<PutAsync>d__4`1::MoveNext()": {
+          "Lines": {
+            "43": 2,
+            "44": 2,
+            "45": 2,
+            "46": 2
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\Infrastructure\\Converters\\InverseBooleanToVisibilityConverter.cs": {
+      "EZBarEscritorio.Infrastructure.Converters.InverseBooleanToVisibilityConverter": {
+        "System.Object EZBarEscritorio.Infrastructure.Converters.InverseBooleanToVisibilityConverter::Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)": {
+          "Lines": {
+            "11": 2,
+            "12": 2,
+            "13": 2,
+            "14": 2,
+            "16": 0,
+            "17": 2
+          },
+          "Branches": [
+            {
+              "Line": 12,
+              "Offset": 7,
+              "EndOffset": 9,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 12,
+              "Offset": 7,
+              "EndOffset": 19,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 12,
+              "Offset": 22,
+              "EndOffset": 24,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 14,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 14,
+              "Offset": 26,
+              "EndOffset": 31,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 12,
+              "Offset": 22,
+              "EndOffset": 40,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Object EZBarEscritorio.Infrastructure.Converters.InverseBooleanToVisibilityConverter::ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)": {
+          "Lines": {
+            "20": 0,
+            "21": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\Domain\\Models\\Pago.cs": {
+      "EZBarEscritorio.Domain.Models.PagoDto": {
+        "System.Int32 EZBarEscritorio.Domain.Models.PagoDto::get_Id()": {
+          "Lines": {
+            "8": 5
+          },
+          "Branches": []
+        },
+        "System.Decimal EZBarEscritorio.Domain.Models.PagoDto::get_Monto()": {
+          "Lines": {
+            "9": 4
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.PagoDto::get_MetodoPago()": {
+          "Lines": {
+            "10": 4
+          },
+          "Branches": []
+        },
+        "System.DateTime EZBarEscritorio.Domain.Models.PagoDto::get_FechaPago()": {
+          "Lines": {
+            "11": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Decimal> EZBarEscritorio.Domain.Models.PagoDto::get_MontoEntregado()": {
+          "Lines": {
+            "12": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Decimal> EZBarEscritorio.Domain.Models.PagoDto::get_Cambio()": {
+          "Lines": {
+            "13": 4
+          },
+          "Branches": []
+        },
+        "EZBarEscritorio.Domain.Models.PedidoDto EZBarEscritorio.Domain.Models.PagoDto::get_Pedido()": {
+          "Lines": {
+            "14": 10
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.Domain.Models.PagoDto::.ctor(System.Int32,System.Decimal,System.String,System.DateTime,System.Nullable`1<System.Decimal>,System.Nullable`1<System.Decimal>,EZBarEscritorio.Domain.Models.PedidoDto)": {
+          "Lines": {
+            "7": 2,
+            "15": 2
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Domain.Models.Pago": {
+        "System.Int32 EZBarEscritorio.Domain.Models.Pago::get_Id()": {
+          "Lines": {
+            "20": 18
+          },
+          "Branches": []
+        },
+        "System.Int32 EZBarEscritorio.Domain.Models.Pago::get_PedidoId()": {
+          "Lines": {
+            "21": 11
+          },
+          "Branches": []
+        },
+        "System.Decimal EZBarEscritorio.Domain.Models.Pago::get_Monto()": {
+          "Lines": {
+            "22": 7
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.Pago::get_MetodoPago()": {
+          "Lines": {
+            "23": 16
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.Pago::get_Estado()": {
+          "Lines": {
+            "24": 6
+          },
+          "Branches": []
+        },
+        "System.DateTime EZBarEscritorio.Domain.Models.Pago::get_FechaPago()": {
+          "Lines": {
+            "25": 10
+          },
+          "Branches": []
+        },
+        "System.Decimal EZBarEscritorio.Domain.Models.Pago::get_MontoEntregado()": {
+          "Lines": {
+            "26": 6
+          },
+          "Branches": []
+        },
+        "System.Decimal EZBarEscritorio.Domain.Models.Pago::get_Cambio()": {
+          "Lines": {
+            "27": 6
+          },
+          "Branches": []
+        }
+      }
+    },
+    "D:\\GitHub\\EZBar-escritorio\\Domain\\Models\\Pedido.cs": {
+      "EZBarEscritorio.Domain.Models.MesaDto": {
+        "System.Int32 EZBarEscritorio.Domain.Models.MesaDto::get_MesaId()": {
+          "Lines": {
+            "8": 4
+          },
+          "Branches": []
+        },
+        "System.Nullable`1<System.Int32> EZBarEscritorio.Domain.Models.MesaDto::get_Numero()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.MesaDto::get_Ubicacion()": {
+          "Lines": {
+            "10": 4
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.MesaDto::get_Nombre()": {
+          "Lines": {
+            "11": 5
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.Domain.Models.MesaDto::.ctor(System.Int32,System.Nullable`1<System.Int32>,System.String,System.String)": {
+          "Lines": {
+            "7": 3,
+            "12": 3
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Domain.Models.PedidoDto": {
+        "System.Int32 EZBarEscritorio.Domain.Models.PedidoDto::get_Id()": {
+          "Lines": {
+            "15": 9
+          },
+          "Branches": []
+        },
+        "EZBarEscritorio.Domain.Models.MesaDto EZBarEscritorio.Domain.Models.PedidoDto::get_Mesa()": {
+          "Lines": {
+            "16": 13
+          },
+          "Branches": []
+        },
+        "System.Decimal EZBarEscritorio.Domain.Models.PedidoDto::get_Total()": {
+          "Lines": {
+            "17": 4
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.PedidoDto::get_Estado()": {
+          "Lines": {
+            "18": 8
+          },
+          "Branches": []
+        },
+        "System.DateTime EZBarEscritorio.Domain.Models.PedidoDto::get_FechaPedido()": {
+          "Lines": {
+            "19": 4
+          },
+          "Branches": []
+        },
+        "System.Void EZBarEscritorio.Domain.Models.PedidoDto::.ctor(System.Int32,EZBarEscritorio.Domain.Models.MesaDto,System.Decimal,System.String,System.DateTime)": {
+          "Lines": {
+            "14": 3,
+            "20": 3
+          },
+          "Branches": []
+        }
+      },
+      "EZBarEscritorio.Domain.Models.Pedido": {
+        "System.Int32 EZBarEscritorio.Domain.Models.Pedido::get_Id()": {
+          "Lines": {
+            "25": 33
+          },
+          "Branches": []
+        },
+        "System.Int32 EZBarEscritorio.Domain.Models.Pedido::get_MesaId()": {
+          "Lines": {
+            "26": 9
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.Pedido::get_NombreMesa()": {
+          "Lines": {
+            "27": 9
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.Pedido::get_Zona()": {
+          "Lines": {
+            "28": 7
+          },
+          "Branches": []
+        },
+        "System.Decimal EZBarEscritorio.Domain.Models.Pedido::get_Total()": {
+          "Lines": {
+            "29": 20
+          },
+          "Branches": []
+        },
+        "System.String EZBarEscritorio.Domain.Models.Pedido::get_Estado()": {
+          "Lines": {
+            "30": 26
+          },
+          "Branches": []
+        },
+        "System.DateTime EZBarEscritorio.Domain.Models.Pedido::get_FechaPedido()": {
+          "Lines": {
+            "31": 9
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

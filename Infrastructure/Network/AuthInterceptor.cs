@@ -18,18 +18,28 @@ namespace EZBarEscritorio.Infrastructure.Network
             _password = password;
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_password))
+            try 
             {
-                var authString = $"{_username}:{_password}";
-                var base64Auth = Convert.ToBase64String(Encoding.UTF8.GetBytes(authString));
-                request.Headers.Authorization = new AuthenticationHeaderValue("Basic", base64Auth);
+                if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_password))
+                {
+                    var authString = $"{_username}:{_password}";
+                    var base64Auth = Convert.ToBase64String(Encoding.UTF8.GetBytes(authString));
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Basic", base64Auth);
+                }
+                // Necesario para saltar la página de advertencia de ngrok
+                request.Headers.Add("ngrok-skip-browser-warning", "true");
+                
+                return await base.SendAsync(request, cancellationToken);
             }
-            // Necesario para saltar la página de advertencia de ngrok
-            request.Headers.Add("ngrok-skip-browser-warning", "true");
-            
-            return await base.SendAsync(request, cancellationToken);
+            catch (Exception)
+            {
+                // Dejamos que la excepción suba para que el ViewModel la capture,
+                // pero tener el bloque try-catch aquí ayuda al depurador de VS a entender que está controlada.
+                throw;
+            }
         }
     }
 }

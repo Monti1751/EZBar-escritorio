@@ -148,7 +148,8 @@
         </TabControl>
 
         <!-- Barra de Estado Inferior -->
-        <Border Grid.Row="2" Background="#EEE" Padding="10,5">
+        <Border Grid.Row="2" Background="#EEE" Padding="10,5"
+            Visibility="{Binding IsConnectionError, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
             <Grid>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Estado:" FontWeight="Bold" Margin="0,0,5,0" />
@@ -165,5 +166,26 @@
                     Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
         </Border>
+        <!-- Overlay de Error de Conexión -->
+        <Grid Grid.Row="0" Grid.RowSpan="3" Background="#AA000000"
+            Visibility="{Binding IsConnectionError, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border Background="White" Width="400" Height="250" CornerRadius="20"
+                VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="⚠️" FontSize="50" HorizontalAlignment="Center" Margin="0,0,0,10" />
+                    <TextBlock Text="ERROR DE CONEXIÓN" FontSize="20" FontWeight="Bold"
+                        Foreground="{StaticResource DarkBrownBrush}" HorizontalAlignment="Center" />
+                    <TextBlock Text="No se pudo conectar con el servidor tras 10 segundos."
+                        Margin="0,10,0,20" TextWrapping="Wrap" TextAlignment="Center" Opacity="0.7" />
+                    
+                    <Button Content="CONECTAR" Command="{Binding RetryConnectionCommand}"
+                        Width="200" Background="{StaticResource PrimaryGreenBrush}"
+                        Padding="10" Foreground="White" FontSize="16" />
+                    
+                    <ProgressBar IsIndeterminate="True" Height="4" Margin="0,10,0,0"
+                        Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

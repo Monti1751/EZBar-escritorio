@@ -3,6 +3,7 @@ using System.Windows.Controls;
 
 namespace EZBarEscritorio
 {
+    [System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public partial class PagoWindow : Window
     {
         public string MetodoPagoSeleccionado { get; private set; }
