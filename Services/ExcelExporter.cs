@@ -1,17 +1,43 @@
 using System.Collections.Generic;
 using ClosedXML.Excel;
 using EZBarEscritorio.Domain.Models;
+using System.IO;
+using System;
 
 namespace EZBarEscritorio.Services
 {
     public class ExcelExporter : IExcelExporter
     {
+        private void ValidarRuta(string ruta)
+        {
+            if (string.IsNullOrWhiteSpace(ruta))
+                throw new ArgumentException("La ruta del archivo no puede estar vacía.");
+
+            // Validar extensión
+            if (!ruta.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Solo se permiten archivos con extensión .xlsx por seguridad.");
+
+            // Validar caracteres inválidos en la ruta
+            if (ruta.IndexOfAny(Path.GetInvalidPathChars()) >= 0)
+                throw new ArgumentException("La ruta contiene caracteres no válidos.");
+
+            // Validar que no sea una ruta de sistema crítica (ejemplo simplificado)
+            string fullPath = Path.GetFullPath(ruta);
+            if (fullPath.StartsWith(Environment.GetFolderPath(Environment.SpecialFolder.Windows), StringComparison.OrdinalIgnoreCase) ||
+                fullPath.StartsWith(Environment.GetFolderPath(Environment.SpecialFolder.System), StringComparison.OrdinalIgnoreCase))
+            {
+                throw new UnauthorizedAccessException("Seguridad: No se permite exportar archivos a directorios del sistema.");
+            }
+        }
+
         public void ExportarPagos(IEnumerable<Pago> pagos, string rutaArchivo)
         {
+            ValidarRuta(rutaArchivo);
             if (pagos == null) return;
             using var workbook = new XLWorkbook();
             var worksheet = workbook.Worksheets.Add("Pagos");
-
+            
+            // ... resto del código ...
             // Cabeceras
             worksheet.Cell(1, 1).Value = "ID";
             worksheet.Cell(1, 2).Value = "Fecha";
@@ -52,6 +78,7 @@ namespace EZBarEscritorio.Services
 
         public void ExportarPedidos(IEnumerable<Pedido> pedidos, string rutaArchivo)
         {
+            ValidarRuta(rutaArchivo);
             if (pedidos == null) return;
             using var workbook = new XLWorkbook();
             var worksheet = workbook.Worksheets.Add("Pedidos");

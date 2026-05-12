@@ -104,3 +104,5 @@ D:\GitHub\EZBar-escritorio\obj\Debug\net9.0-windows\EZBarEscritorio.genruntimeco
 D:\GitHub\EZBar-escritorio\obj\Debug\net9.0-windows\ref\EZBarEscritorio.dll
 d:\GitHub\EZBar-escritorio\obj\Debug\net9.0-windows\PagoWindow.baml
 d:\GitHub\EZBar-escritorio\obj\Debug\net9.0-windows\PagoWindow.g.cs
+D:\GitHub\EZBar-escritorio\obj\Debug\net9.0-windows\LoginWindow.baml
+D:\GitHub\EZBar-escritorio\obj\Debug\net9.0-windows\LoginWindow.g.cs
