@@ -9,10 +9,10 @@ namespace EZBarEscritorio.Infrastructure.Network
 {
     public class AuthInterceptor : DelegatingHandler
     {
-        private readonly string _username;
-        private readonly string _password;
+        private string? _username;
+        private string? _password;
 
-        public AuthInterceptor(string username, string password)
+        public void SetCredentials(string username, string password)
         {
             _username = username;
             _password = password;
@@ -29,15 +29,11 @@ namespace EZBarEscritorio.Infrastructure.Network
                     var base64Auth = Convert.ToBase64String(Encoding.UTF8.GetBytes(authString));
                     request.Headers.Authorization = new AuthenticationHeaderValue("Basic", base64Auth);
                 }
-                // Necesario para saltar la página de advertencia de ngrok
-                request.Headers.Add("ngrok-skip-browser-warning", "true");
                 
                 return await base.SendAsync(request, cancellationToken);
             }
             catch (Exception)
             {
-                // Dejamos que la excepción suba para que el ViewModel la capture,
-                // pero tener el bloque try-catch aquí ayuda al depurador de VS a entender que está controlada.
                 throw;
             }
         }

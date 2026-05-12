@@ -1,21 +1,21 @@
-# EZBar Escritorio
+## ⭐ NUEVO: Refactorización y Seguridad (Mayo de 2026)
 
-## ⭐ NUEVO: Refactorización MVVM y Cobertura de Pruebas (Mayo de 2026)
-
-La aplicación de escritorio ha sido refactorizada para seguir **patrones MVVM avanzados**, mejorando la testabilidad y la separación de responsabilidades:
-- ✅ **Inyección de Dependencias:** Uso de `Microsoft.Extensions.DependencyInjection`.
-- ✅ **MVVM Toolkit:** Implementación con `CommunityToolkit.Mvvm`.
-- ✅ **Abstracción de UI:** Interfaz `IDialogService` para desacoplar la lógica de negocio de la interfaz gráfica.
-- ✅ **Unit Testing:** Cobertura de código superior al **75%** en la capa de lógica y repositorios.
+La aplicación ha sido sometida a un proceso de **Hardening de Seguridad** y refactorización MVVM:
+- ✅ **Seguridad de Credenciales:** Eliminación de secretos hardcodeados; ahora se utiliza un sistema de Login dinámico.
+- ✅ **Cifrado de Red:** Implementación obligatoria de **HTTPS** para servidores externos y soporte seguro para `localhost`.
+- ✅ **Protección de Datos:** Validación estricta de rutas de exportación para prevenir ataques de *Path Traversal*.
+- ✅ **MVVM Avanzado:** Uso de `CommunityToolkit.Mvvm` e Inyección de Dependencias.
+- ✅ **Unit Testing:** Cobertura de código superior al **75%**.
 
 ---
 
 ## Índice
 1. [Arquitectura de la Aplicación](#1-arquitectura-de-la-aplicación)
 2. [Instalación y Configuración](#2-instalación-y-configuración)
-3. [Funcionamiento](#3-funcionamiento)
-4. [Estado del Proyecto](#4-estado-del-proyecto)
-5. [Autores](#5-autores)
+3. [Seguridad](#3-seguridad)
+4. [Funcionamiento](#4-funcionamiento)
+5. [Estado del Proyecto](#5-estado-del-proyecto)
+6. [Autores](#6-autores)
 
 ---
 
@@ -27,7 +27,7 @@ La aplicación de escritorio ha sido refactorizada para seguir **patrones MVVM a
 - **ViewModels:** Gestionan la lógica de presentación y el estado de la UI de forma reactiva.
 - **Repositories:** Capa de abstracción para la comunicación con la API externa.
 - **Services:** Servicios especializados para exportación a Excel (`ClosedXML`) y gestión de diálogos.
-- **Infrastructure:** Manejo de red mediante `HttpClient` con interceptores para autenticación y compatibilidad con túneles Ngrok.
+- **Infrastructure:** Manejo de red mediante `HttpClient` con interceptores para autenticación dinámica y compatibilidad con túneles Ngrok.
 
 ---
 
@@ -49,17 +49,27 @@ cd EZBar-escritorio
 
 ### Configuración
 
-La aplicación busca la configuración en `appsettings.json`. Asegúrate de configurar la URL base de la API:
+La configuración básica se encuentra en `appsettings.json`. Por seguridad, **las credenciales no se almacenan en este archivo**:
 
 ```json
 {
   "ApiSettings": {
-    "BaseUrl": "https://tu-url-ngrok.ngrok-free.app",
-    "Username": "admin",
-    "Password": "password"
+    "BaseUrl": "http://localhost:8080"
   }
 }
 ```
+
+Al iniciar la aplicación, se solicitará el usuario y la contraseña mediante la ventana de Login.
+
+---
+
+## 3. Seguridad
+
+Se han implementado medidas de protección de nivel industrial:
+- **Zero Secrets in Code:** No hay contraseñas en el código ni en archivos de configuración.
+- **HTTPS Enforcement:** La aplicación rechaza automáticamente conexiones no cifradas (HTTP) a hosts externos.
+- **Validación de Archivos:** El exportador de Excel solo permite extensiones `.xlsx` y bloquea el acceso a directorios del sistema (Windows/System32).
+- **Control de Visibilidad:** La interfaz permite ocultar/mostrar la contraseña y configurar parámetros de red avanzados bajo demanda.
 
 ### Ejecución de Pruebas
 
